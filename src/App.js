@@ -10,8 +10,7 @@ class App extends Component {
     super(props);
     this.state = {
       input: '',
-      todos: [],
-      status: false
+      todos: []
     }
   }
 
@@ -21,7 +20,7 @@ class App extends Component {
   }
 
   handleAddItem = () => {
-    if(this.state.input === '') {
+    if (this.state.input === '') {
       return
     }
     const newItem = {
