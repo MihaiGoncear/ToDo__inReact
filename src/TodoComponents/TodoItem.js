@@ -1,12 +1,12 @@
 import React from 'react';
 
 export function TodoItem(props) {
-  
+
   return (
-    <li className={props.item.status ? "todo-list-item complete" : "todo-list-item"} data-todoid={props.item.id}>
-      <input type="checkbox" data-action="checked" onChange={() => props.changeStatus(props.item)} />
+    <li className={props.item.status ? "todo-list-item complete" : "todo-list-item"}>
+      <input type="checkbox" onChange={() => props.changeStatus(props.item)} />
       <span className="todo-result">{props.item.text}</span>
-      <button className="remove" data-action="remove">x</button>
+      <button className="remove" onClick={() => props.removeItem(props.item)}>x</button>
     </li>
   )
 }

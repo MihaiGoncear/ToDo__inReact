@@ -48,6 +48,22 @@ class App extends Component {
         })
       }
     }
+  };
+
+  removeItem = (item) => {
+    
+    let todosItems = this.state.todos;
+
+    for (let index in todosItems) {
+
+      if (todosItems[index].id === item.id) {
+        todosItems.splice(index, 1)
+
+        this.setState({
+          todos: todosItems
+        })
+      }
+    }
   }
 
 render() {
@@ -61,7 +77,7 @@ render() {
             <Button onClick={this.handleAddItem} id="add-button">Add</Button>
           </div>
           <CharacterCounter input={this.state.input} />
-          <RenderTodoItem changeStatus={this.changeStatus} todos={this.state.todos} />
+          <RenderTodoItem removeItem={this.removeItem} changeStatus={this.changeStatus} todos={this.state.todos} />
         </div>
       </div>
     </div>

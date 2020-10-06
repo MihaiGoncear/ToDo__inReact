@@ -7,7 +7,7 @@ export function RenderTodoItem(props) {
       {props.todos.length ? (
         props.todos.map((item) => {
           return (
-            <TodoItem item={item} key={item.id} changeStatus={props.changeStatus} />
+            <TodoItem item={item} key={item.id} changeStatus={props.changeStatus} removeItem={props.removeItem} />
           )
         })
       ) : null}
