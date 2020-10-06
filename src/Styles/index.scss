@@ -1,0 +1,195 @@
+@import "reset";
+@import "mixins";
+
+body{
+    background-color: rgb(230, 230, 230);
+}
+
+h1 {
+    text-align: center;
+    font-style: italic;
+    font-family: cursive;
+    color: rgb(107, 107, 107);
+    margin-top: 20px;
+}
+
+.full-container {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.todo-container {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    border: 2px solid black;
+    background-image: url("https://raw.githubusercontent.com/MihaiGoncear/todoList/master/pictures/bg-container.jpg");
+    background-repeat: no-repeat; 
+    background-position: center; 
+    background-size: cover;
+}
+
+.add-new-input {
+    justify-content: space-between;
+    display: flex;
+    background-color: rgb(199, 199, 199);
+}
+    
+.todo-list {  
+    list-style: none;
+}
+
+.todo-list-item {
+    background-color: rgb(214, 214, 214);
+    display: flex;
+    height: auto;
+    border: 1px solid rgb(0, 0, 0);
+    justify-content: space-between;
+    align-items: center;
+
+    input {
+        cursor: pointer;
+    }
+}
+
+.todo-result {
+    word-wrap: break-word;
+
+    &::first-letter{
+            text-transform: uppercase;
+        }
+}
+
+.remove {
+    border: rgb(95, 93, 93) 1px solid;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.complete {
+    background-color: rgb(159, 209, 159);
+    border: 2px green solid;
+    color: rgba(0, 0, 0, 0.329);
+}
+
+@include isDesktop {
+    h1 {    
+        font-size: 40px;
+    }
+   
+    .todo-container {
+        padding: 40px;
+        margin-top: 150px;
+        margin-bottom: 150px;
+    }
+    
+    .add-new-input {
+        width: 670px;
+        margin-bottom: 20px;
+        padding: 10px;
+        
+        input {
+            width: 600px;
+            margin-right: 10px;
+            height: 30px;
+        }
+
+        button {
+            width: 50px;
+        }
+    }
+    
+    .counter{
+        margin-bottom: 30px;
+    }
+    
+    .todo-list-item {
+        margin-bottom: 10px;
+        width: 670px;
+        padding: 5px 0;
+    
+        input {
+            margin: 0 20px;
+            width: 20px;
+            height: 20px;
+        }
+    }
+    
+    .todo-result {
+        font-size: 20px;
+        width: 500px;
+    }
+       
+    .remove {
+        margin: 0 20px;
+        width: 20px;
+        height: 20px;        
+
+        &:hover{
+            background-color: rgb(253, 133, 133);
+            border: red 1px solid;
+            color: red;
+            font-weight: bold;
+        }
+    }
+}
+
+@include isTelephone{    
+    h1 {
+        font-size: 6vw;
+    }
+    
+    .todo-container {
+        padding: 20px;
+        margin-top: 75px;
+        margin-bottom: 75px;
+        width: 90%;
+    }
+    
+    .add-new-input {
+        width: 100%;
+        margin-bottom: 15px;
+        padding: 5px;
+        
+        input {
+            width: 360px;
+            margin-right: 10px;
+            height: 30px;
+            font-size: 12px;
+        }
+
+        button {
+            width: 40px;
+            font-size: 12px;
+        }
+    }
+    
+    .counter{
+        margin-bottom: 15px;
+        font-size: 12px;
+    }
+    
+    .todo-list-item {
+        margin-bottom: 5px;
+        width: 100%;
+        padding: 5px 0;
+
+        input {
+            margin: 0 5px;
+        }
+    }
+    
+    .todo-result {
+        font-size: 12px;
+        width: 80%;
+    }
+       
+    .remove {
+        margin: 0 5px;
+        width: 11px;
+        height: 11px;
+        font-size: 0px;
+        background-color: rgb(253, 152, 152);
+    }
+}
