@@ -2,7 +2,6 @@ import React from 'react';
 
 export function TodoItem(props) {
   
-  console.log(props.item.status)
   return (
     <li className={props.item.status ? "todo-list-item complete" : "todo-list-item"} data-todoid={props.item.id}>
       <input type="checkbox" data-action="checked" onChange={() => props.changeStatus(props.item)} />

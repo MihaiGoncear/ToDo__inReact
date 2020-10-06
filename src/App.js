@@ -10,8 +10,7 @@ class App extends Component {
     super(props);
     this.state = {
       input: '',
-      todos: [],
-      checkboxStatus: false
+      todos: []
     }
   }
 
@@ -37,14 +36,16 @@ class App extends Component {
 
   changeStatus = (item) => {
 
-    let stateElements = this.state.todos;
+    let todosItems = this.state.todos;
 
-    for (let elem in stateElements) {
-      
-      if (stateElements[elem].id === item.id) {
-        
-        stateElements[elem].status = !stateElements[elem].status
-      
+    for (let index in todosItems) {
+
+      if (todosItems[index].id === item.id) {
+        todosItems[index].status = !todosItems[index].status
+
+        this.setState({
+          todos: todosItems
+        })
       }
     }
   }
