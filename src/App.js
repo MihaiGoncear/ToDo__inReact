@@ -10,7 +10,8 @@ class App extends Component {
     super(props);
     this.state = {
       input: '',
-      todos: []
+      todos: [],
+      checkboxStatus: false
     }
   }
 
@@ -34,23 +35,37 @@ class App extends Component {
     })
   }
 
-  render() {
-    return (
-      <div className="App">
-        <h1>ToDo List Online</h1>
-        <div className="full-container">
-          <div id="todo-container" className="todo-container">
-            <div id="add-new-input" className="add-new-input">
-              <input id="input-text" type="text" placeholder="Add todo" onChange={this.handleChangeImput} value={this.state.input} />
-              <Button onClick={this.handleAddItem} id="add-button">Add</Button>
-            </div>
-            <CharacterCounter input={this.state.input} />
-            <RenderTodoItem todos={this.state.todos} />
+  changeStatus = (item) => {
+
+    let stateElements = this.state.todos;
+
+    for (let elem in stateElements) {
+      
+      if (stateElements[elem].id === item.id) {
+        
+        stateElements[elem].status = !stateElements[elem].status
+      
+      }
+    }
+  }
+
+render() {
+  return (
+    <div className="App">
+      <h1>ToDo List Online</h1>
+      <div className="full-container">
+        <div id="todo-container" className="todo-container">
+          <div id="add-new-input" className="add-new-input">
+            <input id="input-text" type="text" placeholder="Add todo" onChange={this.handleChangeImput} value={this.state.input} />
+            <Button onClick={this.handleAddItem} id="add-button">Add</Button>
           </div>
+          <CharacterCounter input={this.state.input} />
+          <RenderTodoItem changeStatus={this.changeStatus} todos={this.state.todos} />
         </div>
       </div>
-    );
-  }
+    </div>
+  );
+}
 }
 
 
