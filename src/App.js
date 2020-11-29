@@ -3,14 +3,20 @@ import './App.css';
 import { Button } from './UIElements/Button'
 import { CharacterCounter } from './TodoComponents/AppCounter'
 import { RenderTodoItem } from './TodoComponents/RenderTodoItem'
+import { SetItemToLocalStorage } from './TodoComponents/SetItemToLocalStorage'
+import { GetItemFromLocalStorage } from './TodoComponents/GetItemFromLocalStorage'
+import { DoneTodosCounter } from './TodoComponents/DoneTodosCounter'
+import { SetDoneTodosCounterToLocalStorage } from './TodoComponents/SetItemToLocalStorage'
+import { GetDoneTodosCounterFromLocalStorage } from './TodoComponents/GetItemFromLocalStorage'
 
 class App extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
+      doneTodoCounter: GetDoneTodosCounterFromLocalStorage() || 0,
       input: '',
-      todos: []
+      todos: GetItemFromLocalStorage() || []
     }
   }
 
@@ -31,7 +37,7 @@ class App extends Component {
     this.setState({
       input: '',
       todos: this.state.todos.concat(newItem)
-    })
+    }, () => SetItemToLocalStorage(this.state.todos))
   }
 
   changeStatus = (item) => {
@@ -42,9 +48,12 @@ class App extends Component {
 
       if (todosItems[index].id === item.id) {
         todosItems[index].status = !todosItems[index].status
-
         this.setState({
+          doneTodoCounter: todosItems[index].status ? this.state.doneTodoCounter + 1 : this.state.doneTodoCounter - 1 ,
           todos: todosItems
+        }, () => {
+          SetItemToLocalStorage(this.state.todos)
+          SetDoneTodosCounterToLocalStorage(this.state.doneTodoCounter)
         })
       }
     }
@@ -61,7 +70,7 @@ class App extends Component {
 
         this.setState({
           todos: todosItems
-        })
+        }, () => SetItemToLocalStorage(this.state.todos))
       }
     }
   }
@@ -78,6 +87,7 @@ render() {
           </div>
           <CharacterCounter input={this.state.input} />
           <RenderTodoItem removeItem={this.removeItem} changeStatus={this.changeStatus} todos={this.state.todos} />
+          <DoneTodosCounter doneTodosCounter={this.state.doneTodoCounter} />
         </div>
       </div>
     </div>
